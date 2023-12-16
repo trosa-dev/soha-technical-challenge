@@ -18,6 +18,7 @@ export const EmailInput = () => {
 	return (
 		<>
 			<TextField
+				required
 				value={email.value}
 				id="email-input"
 				aria-label="email-input"
