@@ -1,0 +1,81 @@
+# Stage 1: Development Environment
+FROM node:20-alpine as dev
+
+# Add the missing shared libraries from the Alpine base image
+RUN apk add --no-cache libc6-compat
+
+# Create the app folder as the working directory
+WORKDIR /app
+
+# Set the environment variable to 'dev'
+ENV NODE_ENV dev
+
+# Create a non-root user for Docker
+RUN addgroup --system --gid 1001 nest
+RUN adduser --system --uid 1001 nest
+
+# Copy the source code into the app folder with correct ownership
+COPY --chown=node:nest . .
+
+# Install dependencies using 'npm ci'
+RUN npm ci
+
+# Set Docker to use a non-root user
+USER nest
+
+# Stage 2: Build Environment
+FROM node:20-alpine as build
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Add the missing shared libraries from the Alpine base image
+RUN apk add --no-cache libc6-compat
+
+# Set the environment variable to 'production'
+ENV NODE_ENV production
+
+# Re-create the non-root user for Docker
+RUN addgroup --system --gid 1001 nest
+RUN adduser --system --uid 1001 nest
+
+# To run 'npm run build,' access to the Nest CLI is required, which is a dev dependency.
+COPY --chown=node:nest --from=dev /app/node_modules ./node_modules
+
+# Copy the source code into the working directory with correct ownership
+COPY --chown=node:nest . .
+
+# Generate the production build using 'npm run build'
+RUN npm run build
+
+# Install only the production dependencies and clean the cache to optimize the image size
+RUN npm ci
+
+# Set Docker to use a non-root user
+USER nest
+
+# Stage 3: Production Environment
+FROM node:20-alpine as prod
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Add the missing shared libraries from the Alpine base image
+RUN apk add --no-cache libc6-compat
+
+# Set the environment variable to 'production'
+ENV NODE_ENV production
+
+# Re-create the non-root user for Docker
+RUN addgroup --system --gid 1001 nest
+RUN adduser --system --uid 1001 nest
+
+# Copy only the necessary files from the build stage
+COPY --chown=node:nest --from=build /app/dist dist
+COPY --chown=node:nest --from=build /app/node_modules node_modules
+
+# Set Docker to use a non-root user
+USER nest
+
+# Define the default command to run the application
+CMD ["node", "dist/main.js"]
