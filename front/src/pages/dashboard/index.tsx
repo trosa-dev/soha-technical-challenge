@@ -1,15 +1,5 @@
-import { Button } from "@mui/material";
-import Link from "next/link";
+import { DashboardScreen } from "@/screens/dashboard";
 
-const DashboardScreen = () => {
-	return (
-		<>
-			Dashboard
-			<Button>
-				<Link href="/">Dashboard</Link>
-			</Button>
-		</>
-	);
-};
-
-export default DashboardScreen;
+export default function Home() {
+	return <DashboardScreen />;
+}
