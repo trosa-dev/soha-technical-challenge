@@ -1,14 +1,18 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { LoginRegisterTab } from "./components/LoginRegisterTab";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { UserActionEnum } from "@/state/appSlice";
 import { handleOnSubmit } from "./functions/handleOnSubmit";
 import { EmailInput } from "./components/EmailInput";
+import { useEffect, useState } from "react";
+import { PasswordInput } from "./components/PasswordInput";
 
 export const LoginScreen = () => {
+	const [disableButton, setDisableButton] = useState(true);
+
 	const appState = useSelector((state: RootState) => state.app);
-	const { userAction } = appState;
+	const { userAction, email, password } = appState;
 
 	function handleAction(userAction: UserActionEnum) {
 		switch (userAction) {
@@ -20,6 +24,14 @@ export const LoginScreen = () => {
 				return "error";
 		}
 	}
+
+	useEffect(() => {
+		if (email.value === "" || password.value === "") {
+			setDisableButton(true);
+			return;
+		}
+		setDisableButton(false);
+	}, [email.value, password.value]);
 
 	return (
 		<>
@@ -35,26 +47,27 @@ export const LoginScreen = () => {
 					</div>
 
 					<div className="block pt-6 w-full">
-						<TextField
-							id="password-input"
-							aria-label="password-input"
-							label="Password"
-							variant="outlined"
-							fullWidth
-						/>
+						<PasswordInput />
 					</div>
 
-					<div className="block pt-6">
-						<Button
-							variant="contained"
-							fullWidth
-							onClick={() => {
-								handleOnSubmit();
-							}}
-						>
-							{handleAction(userAction)}
-						</Button>
-					</div>
+					<Tooltip
+						title={
+							disableButton === true ? "Email and password are required" : ""
+						}
+					>
+						<div className="block pt-6">
+							<Button
+								disabled={disableButton}
+								variant="contained"
+								fullWidth
+								onClick={() => {
+									handleOnSubmit();
+								}}
+							>
+								{handleAction(userAction)}
+							</Button>
+						</div>
+					</Tooltip>
 				</div>
 			</main>
 		</>
