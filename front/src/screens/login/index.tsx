@@ -1,9 +1,10 @@
 import { Button, TextField } from "@mui/material";
-import Link from "next/link";
 import { LoginRegisterTab } from "./components/LoginRegisterTab";
 import { useSelector } from "react-redux";
 import { RootState } from "@/state/store";
 import { UserActionEnum } from "@/state/appSlice";
+import { handleOnSubmit } from "./functions/handleOnSubmit";
+import { EmailInput } from "./components/EmailInput";
 
 export const LoginScreen = () => {
 	const appState = useSelector((state: RootState) => state.app);
@@ -30,28 +31,30 @@ export const LoginScreen = () => {
 					<LoginRegisterTab />
 
 					<div className="block pt-12">
-						<TextField
-							id="outlined-basic"
-							label="Email"
-							variant="outlined"
-							fullWidth
-						/>
+						<EmailInput />
 					</div>
 
 					<div className="block pt-6 w-full">
 						<TextField
-							id="outlined-basic"
+							id="password-input"
+							aria-label="password-input"
 							label="Password"
 							variant="outlined"
 							fullWidth
 						/>
 					</div>
 
-					<Link className="block pt-6" href="/dashboard">
-						<Button variant="contained" fullWidth>
+					<div className="block pt-6">
+						<Button
+							variant="contained"
+							fullWidth
+							onClick={() => {
+								handleOnSubmit();
+							}}
+						>
 							{handleAction(userAction)}
 						</Button>
-					</Link>
+					</div>
 				</div>
 			</main>
 		</>

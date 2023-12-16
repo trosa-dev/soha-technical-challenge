@@ -13,11 +13,9 @@
 		"@emotion/styled": "11.11.0",
 		"@mui/icons-material": "5.15.0",
 		"@reduxjs/toolkit": "2.0.1",
-		"bootstrap": "3.4.1",
 		"email-validator": "2.0.4",
 		"next": "14.0.4",
 		"react": "18",
-		"react-bootstrap": "2.9.1",
 		"react-dom": "18",
 		"react-redux": "9.0.4"
 	},
