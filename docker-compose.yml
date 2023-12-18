@@ -43,8 +43,9 @@ services:
       context: ./back # Specify the build context for the backend Dockerfile
       dockerfile: Dockerfile # Specify the Dockerfile for building the backend
     environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/pension_system # Set the database connection URL
-      - PORT=3003 # Set the port for the backend service
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/soha # Set the database connection URL
+      - SOHA_SECRET=SOHA_SECRET
+      - JWT_TIMEOUT=15 #minutes
     ports:
       - "3001:3001"
     depends_on:
