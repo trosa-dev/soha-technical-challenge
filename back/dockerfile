@@ -71,11 +71,15 @@ RUN addgroup --system --gid 1001 nest
 RUN adduser --system --uid 1001 nest
 
 # Copy only the necessary files from the build stage
+COPY --chown=node:nest --from=build /app/prisma prisma
 COPY --chown=node:nest --from=build /app/dist dist
 COPY --chown=node:nest --from=build /app/node_modules node_modules
 
 # Set Docker to use a non-root user
 USER nest
 
-# Define the default command to run the application
-CMD ["node", "dist/main.js"]
+# Copy entrypoint script
+COPY .docker/entrypoint.sh entrypoint.sh
+
+# Set the entrypoint for the Docker container
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
