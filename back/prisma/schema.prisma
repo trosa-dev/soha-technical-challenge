@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Generator block specifying the Prisma client provider
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Datasource block specifying the database connection details
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Model block defining the 'User' model with its properties and constraints
+model User {
+  // 'id' field as the primary key with auto-increment
+  id Int @id @default(autoincrement())
+
+  // 'email' field as a unique string
+  email String @unique
+
+  // 'password' field as a string
+  password String
+}
