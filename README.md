@@ -4,7 +4,7 @@
 
 This project was created for the Soha technical challenge. It consists of a Next.js frontend with a NestJS backend API. The main technologies used are:
 
-Frontend
+### Frontend
 
 - Next.js - React framework for building server-rendered apps
 - MaterialUI - A comprehensive React UI framework based on Material Design principles, offering a set of beautiful and customizable components.
@@ -12,13 +12,13 @@ Frontend
 - Redux - State management
 - Axios - Promise based HTTP client
 
-Backend
+### Backend
 
 - NestJS - Backend framework for building efficient, scalable server-side apps
 - Prisma ORM - Modern database access library
 - JWT - Authentication using JSON Web Tokens
 - Swagger - API documentation
-- Jest
+- Jest - A powerful testing framework ensuring the reliability and accuracy of your application.
 
 ## Running the App
 
