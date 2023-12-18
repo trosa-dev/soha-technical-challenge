@@ -31,6 +31,9 @@ COPY --from=deps /app/node_modules ./node_modules
 # Copy the entire source code
 COPY . .
 
+ENV NEXT_PUBLIC_BACKEND=http://back_end:3001
+ENV NEXT_PUBLIC_DELAY=1000
+
 # Build the application
 RUN yarn build
 
