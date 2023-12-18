@@ -1,73 +1,37 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Soha Technical Challenge (BACK)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+IMPORTANT NOTE 1: This project was developed using Node.js version 20.10.0.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+If you encounter any errors, please verify your Node.js version by running:
 
-## Description
+    node -v
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+IMPORTANT NOTE 2: To run the backend project successfully, ensure that you have a running instance of PostgresDB. The connection details must be configured and set in the .env file under the variable DATABASE_URL.
 
-## Installation
+## Overview
 
-```bash
-$ npm install
-```
+This project was created for the Soha technical challenge. It consists of a NestJS backend. The main technologies used are:
 
-## Running the app
+### Backend
 
-```bash
-# development
-$ npm run start
+- NestJS - Backend framework for building efficient, scalable server-side apps
+- Prisma ORM - Modern database access library
+- JWT - Authentication using JSON Web Tokens
+- Swagger - API documentation
+- Jest - A powerful testing framework ensuring the reliability and accuracy of your application.
 
-# watch mode
-$ npm run start:dev
+## Running the App
 
-# production mode
-$ npm run start:prod
-```
+Before running the project, ensure that all other Docker containers and applications are stopped to avoid any conflicts.
 
-## Test
+To initiate the frontend, navigate to the /back directory from the repository's root directory and execute:
 
-```bash
-# unit tests
-$ npm run test
+    npm install
 
-# e2e tests
-$ npm run test:e2e
+After installing the packages, execute:
 
-# test coverage
-$ npm run test:cov
-```
+    npm run dev
 
-## Support
+This will start the NestJS frontend on port 3001.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+The backend can be accessed at http://localhost:3001.
