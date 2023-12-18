@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function HomePage() {
 	// Initializing the useRouter hook
 	const router = useRouter();
 
